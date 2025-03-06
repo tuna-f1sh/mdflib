@@ -431,6 +431,9 @@ void MdfWriter::CreateCanConfig(IDataGroup& dg_block) const {
   if (cg_data_frame != nullptr) {
     cg_data_frame->PathSeparator('.');
     cg_data_frame->Flags(CgFlag::PlainBusEvent | CgFlag::BusEvent);
+    auto* source_info = cg_data_frame->CreateSourceInformation();
+    source_info->Type(SourceType::Bus);
+    source_info->Bus(BusType::Can);
     CreateTimeChannel(*cg_data_frame,"t");
     CreateCanDataFrameChannel(*cg_data_frame);
     cn_data_byte = cg_data_frame->GetChannel("CAN_DataFrame.DataBytes");
@@ -450,6 +453,9 @@ void MdfWriter::CreateCanConfig(IDataGroup& dg_block) const {
   if (cg_remote_frame != nullptr) {
     cg_remote_frame->PathSeparator('.');
     cg_remote_frame->Flags(CgFlag::PlainBusEvent | CgFlag::BusEvent);
+    auto* source_info = cg_remote_frame->CreateSourceInformation();
+    source_info->Type(SourceType::Bus);
+    source_info->Bus(BusType::Can);
     CreateTimeChannel(*cg_remote_frame,"t");
     CreateCanRemoteFrameChannel(*cg_remote_frame);
   }
@@ -459,6 +465,9 @@ void MdfWriter::CreateCanConfig(IDataGroup& dg_block) const {
   if (cg_error_frame != nullptr) {
     cg_error_frame->PathSeparator('.');
     cg_error_frame->Flags(CgFlag::PlainBusEvent | CgFlag::BusEvent);
+    auto* source_info = cg_error_frame->CreateSourceInformation();
+    source_info->Type(SourceType::Bus);
+    source_info->Bus(BusType::Can);
     CreateTimeChannel(*cg_error_frame,"t");
     CreateCanErrorFrameChannel(*cg_error_frame);
     cn_error_byte = cg_error_frame->GetChannel("CAN_ErrorFrame.DataBytes");
@@ -477,6 +486,9 @@ void MdfWriter::CreateCanConfig(IDataGroup& dg_block) const {
   if (cg_overload_frame != nullptr) {
     cg_overload_frame->PathSeparator('.');
     cg_overload_frame->Flags(CgFlag::PlainBusEvent | CgFlag::BusEvent);
+    auto* source_info = cg_overload_frame->CreateSourceInformation();
+    source_info->Type(SourceType::Bus);
+    source_info->Bus(BusType::Can);
     CreateTimeChannel(*cg_overload_frame,"t");
     CreateCanOverloadFrameChannel(*cg_overload_frame);
   }
